@@ -57,6 +57,7 @@ const Login = (props) => {
   // Note this is equivalent to [emailState.isValid,passwordState.isValid]
   // useEffect(() => { () => { // code using someProperty. }}, [someObject.someProperty]);
   // useEffect(() => { () => { // code using someProperty. }}, [somePropertyDistructured]);
+
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: 'USER_INPUT', value: event.target.value });
   };
