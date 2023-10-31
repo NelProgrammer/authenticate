@@ -35,6 +35,7 @@ function App() {
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
       </main>
+      NPM START
     </AuthContext.Provider>
   );
 }
