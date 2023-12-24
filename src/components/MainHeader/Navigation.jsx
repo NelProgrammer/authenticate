@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
+import Button from '../UI/Button/Button';
 import css_Navigation from './Navigation.module.css';
 
-const Navigation = (props) => {
+const Navigation = () => {
+  //Props not needed with use of ContextHook
   const ctx = useContext(AuthContext);
   return (
     <nav className={css_Navigation.nav}>
@@ -19,7 +21,7 @@ const Navigation = (props) => {
         )}
         {ctx.isLoggedIn && (
           <li>
-            <button onClick={props.onLogout}>Logout</button>
+            <Button onClick={ctx.onLogout}>Logout</Button>
           </li>
         )}
       </ul>
