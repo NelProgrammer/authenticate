@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useContext, useState, useEffect, useReducer } from 'react';
 
+import AuthContext from '../../store/auth-context';
 import Card from '../UI/Card/Card';
 import css_Login from './Login.module.css';
 import Button from '../UI/Button/Button';
@@ -74,9 +75,10 @@ const Login = (props) => {
     dispatchPassword({ type: 'INPUT_BLUR' });
   };
 
+  const authCtx = useContext(AuthContext);
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState.value, passwordState.value);
+    authCtx.onLogin(emailState.value, passwordState.value);
   };
 
   return (

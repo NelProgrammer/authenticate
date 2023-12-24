@@ -1,46 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
+import AuthContext from './store/auth-context';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
-import AuthContext from './store/auth-context';
 import MainHeader from './components/MainHeader/MainHeader';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const storedSession = localStorage.getItem('isLoggedIn');
-
-  useEffect(() => {
-    if (storedSession === '1') {
-      setIsLoggedIn(true);
-    }
-  }, [storedSession]);
-
-  const loginHandler = (email, password) => {
-    // We should of course check email and password
-    // But it's just a dummy/ demo anyways
-    localStorage.setItem('isLoggedIn', '1');
-    setIsLoggedIn(true);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem('isLoggedIn');
-    setIsLoggedIn(false);
-  };
+  const ctx = useContext(AuthContext);
 
   return (
-    <AuthContext.Provider
-      value={{
-        isLoggedIn: isLoggedIn,
-        onLogout: logoutHandler,
-      }}
-    >
-      <MainHeader onLogout={logoutHandler} />
+    <React.Fragment>
+      <MainHeader onLogout={ctx.logoutHandler} />
       <main>
-        {!isLoggedIn && <Login onLogin={loginHandler} />}
-        {isLoggedIn && <Home onLogout={logoutHandler} />}
+        {/* State management has been removed from Props to Context = ctx.*/}
+        {!ctx.isLoggedIn && <Login />}
+        {ctx.isLoggedIn && <Home />}
       </main>
-    </AuthContext.Provider>
+    </React.Fragment>
   );
 }
 
