@@ -3,19 +3,19 @@ import React, { useState, useEffect } from 'react';
 const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogout: () => {}, // This is usefull for autoCompletion to avail this on Autocomplete
-  onLogin: (email, Password) => {},
+  onLogin: (email, password) => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const storedSession = localStorage.getItem('isLoggedIn');
-
   useEffect(() => {
+    const storedSession = localStorage.getItem('isLoggedIn');
+
     if (storedSession === '1') {
       setIsLoggedIn(true);
     }
-  }, [storedSession]);
+  }, []);
 
   const logoutHandler = () => {
     localStorage.removeItem('isLoggedIn');

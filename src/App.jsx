@@ -10,7 +10,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <MainHeader onLogout={ctx.logoutHandler} />
+      <MainHeader />
       <main>
         {/* State management has been removed from Props to Context = ctx.*/}
         {!ctx.isLoggedIn && <Login />}
